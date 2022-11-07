@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Vintage Photo Editor</title>
+    <title>Vintage</title>
     <link rel="stylesheet" href="../static/css/normalize.css">
     <link rel="stylesheet" href="../static/css/grid.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400,700" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/ionicons.min.css">
-    <link rel="stylesheet" href="../static/css/home.css">
-    <link rel="icon" href="../static/images/logo.jpg" type="image/jpg">
+    <link rel="stylesheet" href="../static/css/template.css">
+    <link rel="icon" href="../static/images/logo.jpeg" type="image/jpg">
+    {%block head%}
+    {%endblock%}
 </head>
-<body>
+  <body>
     <header>
         <nav class="row">
-            <img src="../static/images/logo.jpg" alt="logo" class="logo">
+            <img src="../static/images/logo.jpeg" alt="Vintage logo" class="logo">
             <ul class="main-nav">
                 <li>
-                    <a href="{{url_for('templates')}}">TEMPLATES</a>
+                    <a href="{{url_for('filters')}}">FILTERS</a>
                 </li>
                 <li>
                     <a href="{{url_for('effects')}}">EFFECTS</a>
                 </li>
                 <li>
+                    <a href="{{url_for('compress')}}">COMPRESS</a>
+                </li>
+                <li>
                     <a href="{{url_for('edit')}}">EDIT</a>
                 </li>
                 <li>
-                    <a href="about.html">ABOUT</a>
+                    <a href="{{url_for('about')}}">ABOUT</a>
                 </li>
                 <li>
-                    <a class="active" href="home.html">HOME</a>
+                    <a href="{{url_for('home')}}">HOME</a>
                 </li>
             </ul>
         </nav>
-        <div class="hero-text-box">
-            <h1>Experience Vintage,
-                <br> the next generation Picture Book!</h1>
-            </div>
-    </header>    
-    <footer class="footer-section">
+    </header>
+      
+      {% block content%}
+      
+      
+      {% endblock %}
+      <footer class="footer-section">
         <div class="row">
             <div class="col span-1-of-2">
                 <ul class="footer-nav">
@@ -50,19 +56,29 @@
                         <a href="{{url_for('edit')}}">EDIT</a>
                     </li>
                     <li>
-                        <a href="{{url_for('templates')}}">TEMPLATES</a>
+                        <a href="{{url_for('compress')}}">COMPRESS</a>
                     </li>
                     <li>
                         <a href="{{url_for('effects')}}">EFFECTS</a>
                     </li>
                     <li>
-                        <a href="{{url_for('help')}}">CONTACT AND SUPPORT</a>
+                        <a href="{{url_for('filters')}}">FILTERS</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col span-1-of-2 ">
+                <ul class="social-links">
+                    <li>
+                        <a href="#"><i class="ion-social-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="ion-social-instagram"></i></a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="row">
-            <p class="footer-copy-text">2022 &copy; Vintage. All rights reserved<br></p>
+            <p class="footer-copy-text">2020 &copy; Vintage. All rights reserved<br></p>
         </div>
         <div class="names">
             <ul>
