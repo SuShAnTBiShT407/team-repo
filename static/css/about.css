@@ -1,4 +1,7 @@
-.features{
+
+body{
+    margin: 0px;
+}.features{
     background-image:linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url(../images/hom.jpg);
         background-size: cover;
         background-position: center;
@@ -16,9 +19,10 @@
     .first p{
         color : #fff;
         line-height: 30px;
+        margin-bottom: 0px;
     }
     .box{
-        padding: 50px 200px 200px 200px;
+        padding: 0px 200px 200px 200px;
     }
     .features .head h1{
         text-align: center;
