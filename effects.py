@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import getpass
 import platform
+import requests
+from PIL import Image
 import os
 import calendar
 import time
@@ -132,24 +134,14 @@ def lynn(path):
 
 
 def download(path):
-    username = getpass.getuser()
-    folder = ''
+
     gmt = time.gmtime()
     ts = calendar.timegm(gmt)
     ts = str(ts)
-    if platform.system() == 'Linux':
-        folder += '/home/' + username + '/Downloads/'
-    else:
-        folder += 'C:\Downloads'
     image = cv2.imread(path)
     previous = os.getcwd()
-    os.chdir(folder)
-    if path.count('jpg') > 0 or path.count('jpeg') > 0:
-        outpath = "SnapLab_Effects_" + ts + ".jpg"
-        cv2.imwrite(outpath, image)
-    elif path.count('png') > 0:
-        outpath = "SnapLab_Effects_" + ts + ".png"
-        cv2.imwrite(outpath, image)
+    img = Image.open(requests.get(path, stream=True).raw)
+    img.save(ts+image)
     os.chdir(previous)
 
 
