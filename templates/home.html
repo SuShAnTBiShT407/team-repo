@@ -15,19 +15,16 @@
             <img src="../static/images/logo.jpg" alt="logo" class="logo">
             <ul class="main-nav">
                 <li>
-                    <a href="{{url_for('templates')}}">TEMPLATES</a>
-                </li>
-                <li>
                     <a href="{{url_for('effects')}}">EFFECTS</a>
                 </li>
                 <li>
                     <a href="{{url_for('edit')}}">EDIT</a>
                 </li>
                 <li>
-                    <a href="about.html">ABOUT</a>
+                    <a href="{{url_for('about')}}">ABOUT</a>
                 </li>
                 <li>
-                    <a class="active" href="home.html">HOME</a>
+                    <a href="{{url_for('home')}}">HOME</a>
                 </li>
             </ul>
         </nav>
@@ -50,13 +47,7 @@
                         <a href="{{url_for('edit')}}">EDIT</a>
                     </li>
                     <li>
-                        <a href="{{url_for('templates')}}">TEMPLATES</a>
-                    </li>
-                    <li>
                         <a href="{{url_for('effects')}}">EFFECTS</a>
-                    </li>
-                    <li>
-                        <a href="{{url_for('help')}}">CONTACT AND SUPPORT</a>
                     </li>
                 </ul>
             </div>
