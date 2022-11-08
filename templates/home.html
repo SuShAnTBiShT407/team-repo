@@ -40,10 +40,6 @@
       line-height: 50px;
     }
 
-    body {
-      font-family: Verdana;
-    }
-
     .columnu {
       float: left;
       width: 31%;
@@ -52,6 +48,10 @@
       margin-top: 7px;
       margin-left: 10px;
       border-radius: 10px;
+    }
+    body {
+      font-family: Verdana;
+      min-height: 100%
     }
 
     .rowu {
@@ -67,8 +67,7 @@
       }
     }
   </style>
-<body>
-    <header>
+<header>
         <nav class="row">
             <img src="../static/images/logo.jpg" alt="logo" class="logo">
             <ul class="main-nav">
@@ -90,8 +89,9 @@
             <h1>Experience Vintage,
                 <br> the next generation Picture Book!</h1>
             </div>
-    </header>
-
+</header>
+<body>
+<section>
     <div
     style="background-color: #2c5282;color: white;text-align: center;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
     <p id="paragraph">Gallery</p>
@@ -119,26 +119,11 @@
     {% endif %}
     {% endfor %}
    </div>
-    <footer class="footer-section">
-        <div class="row">
-            <div class="col span-1-of-2">
-                <ul class="footer-nav">
-                    <li >
-                        <a href="{{url_for('home')}}">HOME</a>
-                    </li>
-                    <li>
-                    <a href="{{url_for('about')}}">ABOUT</a>
-                </li>
-                    <li>
-                        <a href="{{url_for('edit')}}">EDIT</a>
-                    </li>
-                    <li>
-                        <a href="{{url_for('effects')}}">EFFECTS</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
+</section>
+
+    
+</body>    
+  <footer class="footer-section">
             <p class="footer-copy-text">2022 &copy; Vintage. All rights reserved<br></p>
         </div>
         <div class="names">
@@ -150,9 +135,6 @@
                 <li>Namandeep Singh</li>
             </ul>
         </div>
-        
+
     </footer>
-    
-</body>    
-    
 </html>
