@@ -82,7 +82,7 @@ header{
     width: 100%;
 }
 .gallery img{
-    width: 300px;
+    width: 20%;
     height: 200px;
     float: left;
 }
