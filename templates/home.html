@@ -6,7 +6,67 @@
     <link rel="stylesheet" href="../static/css/ionicons.min.css">
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="icon" href="../static/images/logo.jpg" type="image/jpg">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+  <style>
+    .preview-image {
+      height: 200px;
+      width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .custom-file-upload {
+      width: 100px;
+      text-align: center;
+      margin-left: 46%;
+      margin-top: 40px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      background-color: white;
+      color: #3182ce;
+      box-shadow: 0px 10px #2c5282;
+      border-radius: 10px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    #paragraph {
+      font-size: 30px;
+      line-height: 50px;
+    }
+
+    body {
+      font-family: Verdana;
+    }
+
+    .columnu {
+      float: left;
+      width: 31%;
+      color: #3182ce;
+      background-color: white;
+      margin-top: 7px;
+      margin-left: 10px;
+      border-radius: 10px;
+    }
+
+    .rowu {
+      width: 80%;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 500px) {
+      .columnu {
+        width: 100%;
+      }
+    }
+  </style>
 <body>
     <header>
         <nav class="row">
@@ -31,89 +91,34 @@
                 <br> the next generation Picture Book!</h1>
             </div>
     </header>
-    <section class="collection">
-        <h2>COLLECTION</h2>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/1.jpg">
-            <img src="../static/collection/1.jpg" alt="image 1"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/2.jpg">
-            <img src="../static/collection/2.jpg" alt="image 2"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/3.jpg">
-            <img src="../static/collection/3.jpg" alt="image 3"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/4.jpg">
-            <img src="../static/collection/4.jpg" alt="image 4"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/5.jpg">
-            <img src="../static/collection/5.jpg" alt="image 5"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/6.jpg">
-            <img src="../static/collection/6.jpg" alt="image 6"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/7.jpg">
-            <img src="../static/collection/7.jpg" alt="image 7"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/8.jpg">
-            <img src="../static/collection/8.jpg" alt="image 8"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/9.jpg">
-            <img src="../static/collection/9.jpg" alt="image 9"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/10.jpg">
-            <img src="../static/collection/10.jpg" alt="image 10"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/11.jpg">
-            <img src="../static/collection/11.jpg" alt="image 11"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/12.jpg">
-            <img src="../static/collection/12.jpg" alt="image 12"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/13.jpg">
-            <img src="../static/collection/13.jpg" alt="image 13"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/14.jpg">
-            <img src="../static/collection/14.jpg" alt="image 14"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/15.jpg">
-            <img src="../static/collection/15.jpg" alt="image 15"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/16.jpg">
-            <img src="../static/collection/16.jpg" alt="image 16"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/17.jpg">
-            <img src="../static/collection/17.jpg" alt="image 17"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/18.jpg">
-            <img src="../static/collection/18.jpg" alt="image 18"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/19.jpg">
-            <img src="../static/collection/19.jpg" alt="image 19"></a>
-        </div>
-        <div class="gallery">
-            <a target="blank" href="../static/collection/20.jpg">
-            <img src="../static/collection/20.jpg" alt="image 20"></a>
-        </div>
-    </section>    
+
+    <div
+    style="background-color: #2c5282;color: white;text-align: center;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+    <p id="paragraph">Gallery</p>
+    </div>
+     <form id="form" action="{{url_for('uploads')}}" enctype="multipart/form-data" method="POST">
+
+
+    <label class="custom-file-upload">
+      <img src="{{url_for('static', filename='images/trash/')}}" width="18%" height="18%">
+      <input type="file" name="file" id="file" onchange="document.getElementById('upload').click()" />
+      Upload
+    </label>
+
+    <input id="upload" type="Submit" value="Upload" style="display: none;" />
+
+  </form>
+  <br><br>
+  <div class="rowu">
+    {% for upload in uploads %}
+    {% if ('png' in upload) or ('jpg' in upload) or ('jpeg' in upload) %}
+    <div class="columnu">
+      <img class="preview-image" src="{{url_for('static', filename=upload)}}" alt="{{upload}}">
+      {% print(upload.split("/")[1][:20]) %}
+    </div>
+    {% endif %}
+    {% endfor %}
+   </div>
     <footer class="footer-section">
         <div class="row">
             <div class="col span-1-of-2">
