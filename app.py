@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, session
+from flask import Flask, render_template, request, flash, redirect
 from werkzeug.utils import secure_filename
 import wget
 from effects import oreo, mercury, alchemy, wacko, unstable, ore, contour, snicko, indus, spectra, molecule, lynn,\
@@ -21,7 +21,14 @@ def add_header(response):
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    path = 'static/images/trash/'
+    uploads = sorted(os.listdir(path), key=lambda x: os.path.getctime(path + x))
+    # Sorting as per image upload date and time
+    print(uploads)
+    # uploads = os.listdir('static/uploads')
+    uploads = ['images/trash/' + file for file in uploads]
+    uploads.reverse()
+    return render_template('home.html', uploads=uploads)
 
 
 # About Page of Vintage
@@ -33,6 +40,17 @@ def about():
 @app.route('/edit', methods=['GET', 'POST'])
 def edit():
     return render_template('edit.html')
+
+
+app.config['UPLOAD_PATH'] = 'static/images/trash/'
+@app.route('/uploads', methods=['GET', 'POST'])
+def uploads():
+    if request.method == 'POST':
+        f = request.files['file']
+        print(f.filename)
+        filename = secure_filename(f.filename)
+        f.save(os.path.join(app.config['UPLOAD_PATH'], filename))
+        return redirect("/")
 
 
 @app.route('/effects', methods=['GET', 'POST'])
