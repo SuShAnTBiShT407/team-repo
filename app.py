@@ -1,12 +1,10 @@
-from flask import Flask, render_template, request, flash, Response
+from flask import Flask, render_template, request, flash, session
 from werkzeug.utils import secure_filename
 import wget
-import cv2
+from effects import oreo, mercury, alchemy, wacko, unstable, ore, contour, snicko, indus, spectra, molecule, lynn,\
+    download
 import os
-import calendar
-import time
-import getpass
-import platform
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'VintageLab'
@@ -34,12 +32,235 @@ def about():
 
 @app.route('/edit', methods=['GET', 'POST'])
 def edit():
-    render_template('home.html')
+    return render_template('edit.html')
 
 
 @app.route('/effects', methods=['GET', 'POST'])
 def effects():
-    render_template('home.html')
+    if request.method == 'POST':
+        eff_img = ''
+        effected = ''
+        print("Entered Post")
+        if request.form['button'] == 'Upload' and request.form['path'] != '' and request.files['local_file'].filename \
+                == '':
+            path = request.form['path']
+            a = path.split('/')
+            previous = os.getcwd()
+            eff_img = previous + '/static/images/trash/' + a[len(a) - 1]
+            if os.path.isfile(previous + '/static/images/trash/' + a[len(a) - 1]):
+                return render_template('effects.html', image_filename='../static/images/trash/' + a[len(a) - 1])
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            image_filename = wget.download(path)
+            os.chdir(previous)
+            return render_template('effects.html', image_filename='../static/images/trash/' + image_filename)
+
+        elif request.form['button'] == 'Upload' and request.form['path'] == '' and request.files[
+            'local_file'].filename != '':
+            f = request.files['local_file']
+            previous = os.getcwd()
+            eff_img = previous + '/static/images/trash/' + f.filename
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            f.save(secure_filename(f.filename))
+            os.chdir(previous)
+            return render_template('effects.html', image_filename='../static/images/trash/' + f.filename)
+
+        elif request.form['button'] == 'Download' and effected != '':
+            download(effected)
+            effected = ""
+            eff_img = ""
+            flash("Successfully Downloaded! Image available in Downloads")
+            return render_template('effects.html')
+
+        elif request.form['button'] == 'Oreo' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            oreo(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Mercury' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            mercury(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Alchemy' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            alchemy(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Wacko' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            wacko(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Unstable' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            unstable(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Ore' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            ore(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Contour' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            contour(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Snicko' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            snicko(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Indus' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            indus(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Spectra' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            spectra(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        elif request.form['button'] == 'Molecule' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            molecule(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+
+        elif request.form['button'] == 'Lynn' and eff_img != '':
+            previous = os.getcwd()
+            folder = previous + '/static/images/trash/'
+            os.chdir(folder)
+            lynn(eff_img)
+            os.chdir(previous)
+            if eff_img.count('jpeg') > 0 or eff_img.count("jpg") > 0:
+                effected = folder + 'intermediate.jpg'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.jpg')
+            elif eff_img.count('png') > 0:
+                effected = folder + 'intermediate.png'
+                return render_template('effects.html', image_filename='../static/images/trash/intermediate.png')
+            else:
+                return render_template('effects.html')
+
+        else:
+            eff_img = ''
+            effected = ''
+            flash("Oops Something went wrong !")
+            return render_template('effects.html')
+
+    return render_template('effects.html')
 
 
 # Main function-----
