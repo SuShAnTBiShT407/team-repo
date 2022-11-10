@@ -44,8 +44,10 @@
        <br/>
        {% for mess in get_flashed_messages() %}
         <h5>{{mess}}</h5>
-        {% endfor %} 
-       <input type='submit' name="button" value='Download' class="download">
+        {% endfor %}
+            <div class='button'>
+                <a href={{image_filename}} class ="btn" download>Download</a>
+            </div>
         </div>
         </div>
     </form> 
