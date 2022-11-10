@@ -43,6 +43,8 @@ def edit():
 
 
 app.config['UPLOAD_PATH'] = 'static/images/trash/'
+
+
 @app.route('/uploads', methods=['GET', 'POST'])
 def uploads():
     if request.method == 'POST':
@@ -53,11 +55,15 @@ def uploads():
         return redirect("/")
 
 
+eff_img = ''
+effected = ''
+
+
 @app.route('/effects', methods=['GET', 'POST'])
 def effects():
     if request.method == 'POST':
-        eff_img = ''
-        effected = ''
+        global eff_img
+        global effected
         print("Entered Post")
         if request.form['button'] == 'Upload' and request.form['path'] != '' and request.files['local_file'].filename \
                 == '':
@@ -86,8 +92,6 @@ def effects():
 
         elif request.form['button'] == 'Download' and effected != '':
             download(effected)
-            effected = ""
-            eff_img = ""
             flash("Successfully Downloaded! Image available in Downloads")
             return render_template('effects.html')
 
