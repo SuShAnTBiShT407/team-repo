@@ -21,7 +21,7 @@ def add_header(response):
 @app.route('/')
 @app.route('/home')
 def home():
-    path = 'static/images/trash/'
+    path = '../static/images/trash/'
     uploads = sorted(os.listdir(path), key=lambda x: os.path.getctime(path + x))
     # Sorting as per image upload date and time
     print(uploads)
@@ -42,7 +42,7 @@ def edit():
     return render_template('edit.html')
 
 
-app.config['UPLOAD_PATH'] = 'static/images/trash/'
+app.config['UPLOAD_PATH'] = '../static/images/trash/'
 @app.route('/uploads', methods=['GET', 'POST'])
 def uploads():
     if request.method == 'POST':
