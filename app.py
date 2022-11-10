@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect
 from werkzeug.utils import secure_filename
 import wget
-from effects import oreo, mercury, alchemy, wacko, unstable, ore, contour, snicko, indus, spectra, molecule, lynn,\
+from src.effects import oreo, mercury, alchemy, wacko, unstable, ore, contour, snicko, indus, spectra, molecule, lynn,\
     download
 import os
 
