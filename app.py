@@ -90,11 +90,6 @@ def effects():
             os.chdir(previous)
             return render_template('effects.html', image_filename='../static/images/trash/' + f.filename)
 
-        elif request.form['button'] == 'Download' and effected != '':
-            download(effected)
-            flash("Successfully Downloaded! Image available in Downloads")
-            return render_template('effects.html')
-
         elif request.form['button'] == 'Oreo' and eff_img != '':
             previous = os.getcwd()
             folder = previous + '/static/images/trash/'
@@ -287,4 +282,4 @@ def effects():
 
 # Main function-----
 if __name__ == '__main__':
-    app.run(debug=False, port=8080)
+    app.run(debug=False, port=3000)
